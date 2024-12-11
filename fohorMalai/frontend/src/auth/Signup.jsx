@@ -5,6 +5,7 @@ import { signUpSchema } from "../validation/formValidation";
 import BGImg from "../assets/signup.jpg";
 import { Link } from "react-router-dom";
 
+
 const Signup = () => {
   const [role, setRole] = useState("User");
   const {
@@ -138,3 +139,4 @@ const Signup = () => {
 };
 
 export default Signup;
+// >>>>>>> 9892400231d18c7e7cf11a8e165c76515d7f2fab

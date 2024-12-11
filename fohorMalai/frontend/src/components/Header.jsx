@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -21,43 +22,23 @@ const Header = () => {
         {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8">
           <li>
-            <a
-              href="#home"
-              className="text-gray-600 hover:text-green-400 font-medium"
-            >
-              Home
-            </a>
+            <a href="#home" className="text-gray-600 hover:text-green-400 font-medium">Home</a>
           </li>
           <li>
-            <a
-              href="#about"
-              className="text-gray-600 hover:text-green-400 font-medium"
-            >
-              About
-            </a>
+            <a href="#about" className="text-gray-600 hover:text-green-400 font-medium">About</a>
           </li>
           <li>
-            <a
-              href="#services"
-              className="text-gray-600 hover:text-green-400 font-medium"
-            >
-              Services
-            </a>
+            <a href="#services" className="text-gray-600 hover:text-green-400 font-medium">Services</a>
           </li>
           <li>
-            <a
-              href="#contact"
-              className="text-gray-600 hover:text-green-400 font-medium"
-            >
-              Contact
-            </a>
+            <a href="#contact" className="text-gray-600 hover:text-green-400 font-medium">Contact</a>
           </li>
         </ul>
 
         {/* Profile Section */}
         <div className="relative">
           <img
-            src="https://via.placeholder.com/40"
+            src=""
             alt="Profile"
             className="w-10 h-10 rounded-full border border-gray-300 cursor-pointer"
             onClick={toggleDropdown}
