@@ -4,13 +4,14 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 
 function App() {
-
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-    </Routes>
-  </BrowserRouter>;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>x 
+    </Router>
+  );
 }
 
 export default App;
