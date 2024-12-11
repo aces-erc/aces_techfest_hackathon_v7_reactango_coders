@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const UserLayout = () => {
   return (
-    <div className="p-2">
+    <div className="">
       <Header />
       <Outlet />
       <Footer />

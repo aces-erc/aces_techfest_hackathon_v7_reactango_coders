@@ -1,6 +1,6 @@
 const Homepage = () => {
   return (
-    <div className="flex flex-col items-center justify-center  border h-screen w-full bg-red-500">
+    <div className="flex flex-col items-center justify-center  h-screen w-full bg-red-500">
       {/* hero section */}
       <div className="h-[90%] w-full bg-yellow-500"></div>
 
