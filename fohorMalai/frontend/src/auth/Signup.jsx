@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -137,3 +138,4 @@ console.log(data);
 }
 
 export default Signup 
+// >>>>>>> 9892400231d18c7e7cf11a8e165c76515d7f2fab
