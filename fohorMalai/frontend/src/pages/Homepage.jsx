@@ -4,9 +4,9 @@ import Home from "../assets/home-banner.avif"
 
 const Homepage = () => {
   return (
-    <div className="flex flex-col items-center justify-center border h-screen w-full bg-red-500">
+    <div className="flex flex-col items-center justify-center border h-screen w-full">
     {/* Hero Section */}
-    <div className="h-[90%] w-full relative bg-yellow-500">
+    <div className="h-[90%] w-full relative">
       {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center"

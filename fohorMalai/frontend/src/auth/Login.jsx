@@ -3,12 +3,11 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validation/formValidation"; // Import the schema
-import { Link } from "react-router-dom";
+import { login_token } from "../api/endPoints";
 
 import BGImg from "../assets/signup.jpg";
 
 const Login = () => {
-
   const {
     register,
     handleSubmit,
@@ -18,7 +17,11 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    // console.log(data);
+    try {
+      const token = await login_token(data.username, data.password);
+      console.log(token);
+    } catch (error) {}
   };
 
   return (
