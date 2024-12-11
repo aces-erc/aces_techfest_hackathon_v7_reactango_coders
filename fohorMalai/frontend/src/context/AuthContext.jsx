@@ -1,25 +1,41 @@
-import { createContext } from "react"
+// UserContext.js
+import React, { createContext, useState, useEffect } from "react";
 
-const userContext = createContext();
+// Create the context
+export const UserContext = createContext();
 
+// Create the provider component
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState({ name: "ashish" }); // User state
+  const [loading, setLoading] = useState(true); // Loading state for async operations
 
-const AuthContext = () => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    
-    const login = () => {
+  /*
+  useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true);
+      const storedUser = JSON.parse(localStorage.getItem('user')); // Example: get user from localStorage
+      setUser(storedUser);
+      setLoading(false);
+    };
 
-    }
-     
-    const logout = () => {
+    fetchUser();
+  }, []);
 
-    }
+  // Login function
+  const login = (userData) => {
+    setUser(userData);
+    localStorage.setItem('user', JSON.stringify(userData)); // Save user to localStorage
+  };
 
+  // Logout function
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('user'); // Remove user from localStorage
+  };
+  */
   return (
-    <div>
-      
-    </div>
-  )
-}
-
-export default AuthContext
+    <UserContext.Provider value={{ user, loading }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
