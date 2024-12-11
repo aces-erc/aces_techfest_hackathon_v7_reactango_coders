@@ -39,3 +39,20 @@ export const login_token = async (username, password) => {
     throw error;
   }
 };
+
+// signup success
+export const signup_token = async (username, email, password, role, phone) => {
+  try {
+    const response = await api.post("/register/", {
+      username,
+      email,
+      password,
+      role,
+      phone,
+    });
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error("Signup failed:", error);
+  }
+};

@@ -27,6 +27,9 @@ export const loginSchema = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .max(20, "Password must not exceed 20 characters"),
 
+    phone: yup.string()
+    .required("Phone number is required"),
+
     confirmPassword: yup.string()
     .oneOf([yup.ref("password"), null], "Confirm Password does not match with Password"),
 
