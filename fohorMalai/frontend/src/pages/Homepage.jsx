@@ -3,9 +3,7 @@ import Home from "../assets/home-banner.avif";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { useState } from "react";
 import HeroCard from "../components/HeroCard";
-import health from "../assets/better-health.avif";
-import environment from "../assets/better-environment.avif";
-import pollution from "../assets/better-pollution.avif";
+
 import { heros } from "../links/heros";
 import { sections } from "../links/sections";
 
@@ -79,42 +77,45 @@ const Homepage = () => {
 
         {/* Accordion Section */}
         <div className=" flex flex-col border-t border-gray-300">
-          {sections.map((section, index) => (
-            <div key={index} className="border-b border-gray-300">
-              {/* Title */}
-              <button
-                onClick={() =>
-                  setActiveIndex(activeIndex === index ? null : index)
-                }
-                className="w-full flex justify-between items-center py-4 text-left"
-              >
-                <h2
-                  className={`text-xl font-bold ${
-                    activeIndex === index ? "text-black" : "text-green-600"
-                  }`}
+          {sections &&
+            sections.map((section, index) => (
+              <div key={index} className="border-b border-gray-300">
+                {/* Title */}
+                <button
+                  onClick={() =>
+                    setActiveIndex(activeIndex === index ? null : index)
+                  }
+                  className="w-full flex justify-between items-center py-4 text-left"
                 >
-                  {section.title}
-                </h2>
-                {activeIndex === index ? (
-                  <FiChevronUp size={24} />
-                ) : (
-                  <FiChevronDown size={24} />
-                )}
-              </button>
+                  <h2
+                    className={`text-xl font-bold ${
+                      activeIndex === index ? "text-black" : "text-green-600"
+                    }`}
+                  >
+                    {section.title}
+                  </h2>
+                  {activeIndex === index ? (
+                    <FiChevronUp size={24} />
+                  ) : (
+                    <FiChevronDown size={24} />
+                  )}
+                </button>
 
-              {/* Content */}
-              {activeIndex === index && (
-                <div className="flex flex-col md:flex-row gap-4 md:gap-10 py-4">
-                  <p className="text-gray-700 flex-1">{section.description}</p>
-                  <img
-                    src={section.image}
-                    alt={section.title}
-                    className="w-[320px] h-[220px] object-cover rounded-lg"
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+                {/* Content */}
+                {activeIndex === index && (
+                  <div className="flex flex-col md:flex-row gap-4 md:gap-10 py-4">
+                    <p className="text-gray-700 flex-1">
+                      {section.description}
+                    </p>
+                    <img
+                      src={section.image}
+                      alt={section.title}
+                      className="w-[320px] h-[220px] object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
         </div>
       </div>
       <p className="text-gray-600 mb-8">

@@ -1,3 +1,7 @@
+import health from "../assets/better-health.avif";
+import environment from "../assets/better-environment.avif";
+import pollution from "../assets/better-pollution.avif";
+
   export const sections = [
     {
       title: "Health Improvement",

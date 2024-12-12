@@ -1,5 +1,6 @@
 import { footerLinks } from "../links/footer";
 import { Link } from "react-router-dom";
+import Map from "./Map";
 
 const Footer = () => {
   return (
@@ -39,7 +40,7 @@ const Footer = () => {
         <div className="w-full md:w-1/3 text-center md:text-right flex flex-col items-center">
           <h3 className="text-xl font-bold text-gray-100 mb-4">Our Location</h3>
           <div className="w-full h-32 bg-gray-700 flex items-center justify-center rounded-md">
-            <p className="text-gray-400">Map Placeholder</p>
+            <Map />
           </div>
           <p className="mt-2 text-gray-400">
             Find us here and let's work towards a cleaner environment.
