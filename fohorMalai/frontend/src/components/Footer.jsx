@@ -1,6 +1,6 @@
 import { footerLinks } from "../links/footer";
 import { Link } from "react-router-dom";
-import Map from "../components/Map";
+import Map from "./Map";
 
 const Footer = () => {
   return (
@@ -39,7 +39,7 @@ const Footer = () => {
         {/* Map Section */}
         <div className="w-screen md:w-1/3 text-center md:text-right flex flex-col items-center">
           <h3 className="text-xl font-bold text-gray-100 mb-4">Our Location</h3>
-          <div className="w-full h-48 bg-gray-700 flex items-center justify-center rounded-md">
+          <div className="w-full h-32 bg-gray-700 flex items-center justify-center rounded-md">
             <Map />
           </div>
           <p className="mt-2 text-gray-400">

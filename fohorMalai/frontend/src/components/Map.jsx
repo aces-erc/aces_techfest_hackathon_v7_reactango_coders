@@ -22,13 +22,14 @@ export default function Map() {
 
     map.current.addControl(new maplibregl.NavigationControl(), "top-right");
     new maplibregl.Marker({ color: "#FF0000" })
-      .setLngLat([87.274444,26.663056])
+      .setLngLat([87.274444, 26.663056])
       .addTo(map.current);
   }, [API_KEY, lng, lat, zoom]);
 
   return (
     <div className="relative w-full h-full">
       <div ref={mapContainer} className="absolute w-full h-full" />
+         
     </div>
   );
 }
