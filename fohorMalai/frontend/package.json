@@ -20,11 +20,8 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.54.0",
     "react-icons": "^5.4.0",
-<<<<<<< HEAD
     "react-icons-kit": "^2.0.0",
-=======
     "react-leaflet": "^4.2.1",
->>>>>>> bc79bb10e4fe55641a467e29fd06926de1efce5a
     "react-loader-spinner": "^6.1.6",
     "react-router-dom": "^7.0.2",
     "react-toastify": "^10.0.6",
