@@ -27,6 +27,7 @@ const mockDustbins = [
   { id: 9, name: "Dustbin I", position: [26.6667, 87.2833] },
   { id: 10, name: "Dustbin J", position: [26.667, 87.281] },
 ];
+console.log("Rendering DustbinMap"); 
 
 function DustbinMap() {
   return (

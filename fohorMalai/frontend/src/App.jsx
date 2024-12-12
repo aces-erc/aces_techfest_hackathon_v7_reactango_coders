@@ -14,6 +14,7 @@ import ContactUs from "./pages/Contact";
 import About from "./pages/AboutUs";
 import RequestPage from "./pages/RequestPage";
 import CollectorDashboard from "./pages/CollectorDashboard";
+import DustbinMap from "./components/DustbinMap";
 
 function App() {
   return (
@@ -25,6 +26,12 @@ function App() {
             <RedirectIfAuthenticated>
               <LandingPage />
             </RedirectIfAuthenticated>
+          }
+        />
+          <Route
+          path="/dustbinpage"
+          element={
+              <DustbinMap />
           }
         />
 
