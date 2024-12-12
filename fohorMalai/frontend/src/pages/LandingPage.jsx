@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate hook for programmatic navigation
 import Landing from "../assets/landing.avif";
 import { Link } from "react-router-dom";
-import DustbinMap from "../components/DustbinMap";
+import Modal from "../components/Modal"; // Import the Modal component
 
 const LandingPage = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true); // Modal visibility state
+  const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
+
+  const closeModal = () => setIsModalOpen(false); // Function to close the modal
+  const redirectToDustbinPage = () => {
+    console.log("Navigating to dustbin page...");
+    navigate("/dustbinpage");  // Navigate to dustbin page
+    closeModal();  // Close the modal after navigation
+  };
+
   return (
-    <div className="h-screen w-full overflow-hidden">
+    <div className="h-full border w-full overflow-hidden">
       {/* Transparent Header */}
       <header className="fixed top-0 z-50 w-full bg-transparent">
         <nav className="flex items-center justify-center py-2">
@@ -20,8 +31,7 @@ const LandingPage = () => {
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <div className=" w-full relative">
+      <div className="h-screen w-full relative">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-no-repeat bg-cover bg-center"
@@ -52,7 +62,15 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <DustbinMap />
+      {/* Modal */}
+      <Modal show={isModalOpen} onClose={closeModal} title="Find the nearest dustbin">
+        <div
+          className="cursor-pointer text-gray-500"
+          onClick={redirectToDustbinPage}
+        >
+          Click anywhere in this modal to go to the Dustbin page.
+        </div>
+      </Modal>
     </div>
   );
 };
