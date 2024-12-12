@@ -4,7 +4,6 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Homepage from "./pages/Homepage";
 import UserLayout from "./Layout/UserLayout";
-import Loader from "./components/Loader";
 import NotFoundPage from "./components/404NotFound";
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<UserLayout />}>
-          <Route path="/home" element={<Homepage />} />
+          <Route index element={<Homepage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

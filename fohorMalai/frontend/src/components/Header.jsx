@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { header } from "../links/header";
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -21,18 +21,17 @@ const Header = () => {
 
         {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8">
-          <li>
-            <a href="#home" className="text-gray-600 hover:text-green-400 font-medium">Home</a>
-          </li>
-          <li>
-            <a href="#about" className="text-gray-600 hover:text-green-400 font-medium">About</a>
-          </li>
-          <li>
-            <a href="#services" className="text-gray-600 hover:text-green-400 font-medium">Services</a>
-          </li>
-          <li>
-            <a href="#contact" className="text-gray-600 hover:text-green-400 font-medium">Contact</a>
-          </li>
+          {header &&
+            header.map((header, index) => (
+              <li key={index}>
+                <Link
+                  to={header.url}
+                  className="text-gray-600 hover:text-green-400 font-medium"
+                >
+                  {header.name}
+                </Link>
+              </li>
+            ))}
         </ul>
 
         {/* Profile Section */}
