@@ -5,7 +5,7 @@ import DustbinMap from "../components/DustbinMap";
 
 const LandingPage = () => {
   return (
-    <div className="h-screen w-full overflow-hidden">
+    <div className="h-full border w-full overflow-hidden">
       {/* Transparent Header */}
       <header className="fixed top-0 z-50 w-full bg-transparent">
         <nav className="flex items-center justify-center py-2">
@@ -20,8 +20,7 @@ const LandingPage = () => {
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <div className=" w-full relative">
+      <div className="h-screen w-full relative">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-no-repeat bg-cover bg-center"
@@ -51,8 +50,6 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-
-      <DustbinMap />
     </div>
   );
 };

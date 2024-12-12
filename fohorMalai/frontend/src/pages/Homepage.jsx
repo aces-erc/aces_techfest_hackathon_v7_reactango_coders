@@ -6,9 +6,11 @@ import HeroCard from "../components/HeroCard";
 import { heros } from "../links/heros";
 import { sections } from "../links/sections";
 import { UserContext } from "../context/AuthContext";
+import { getUser } from "../api/endPoints";
 
 const Homepage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { username } = useParams();
 
   return (
     <div className="flex flex-col bg-lime-50 items-center justify-center border h-full w-full">
@@ -19,7 +21,7 @@ const Homepage = () => {
           className="absolute inset-0 bg-no-repeat bg-cover bg-center"
           style={{
             backgroundImage: `url(${Home})`,
-          }}  
+          }}
         ></div>
 
         {/* Slogan Overlay */}
@@ -69,7 +71,9 @@ const Homepage = () => {
       </div>
       {/* CTA Section */}
       <div className="w-[70%] bg-white py-10 px-5 pb-16 md:px-20">
-        <h1 className="text-4xl text-green-600 font-extrabold mb-6">Issues We Work On</h1>
+        <h1 className="text-4xl text-green-600 font-extrabold mb-6">
+          Issues We Work On
+        </h1>
         <p className="text-gray-600 mb-8">
           For more than 35 years, we have been at the forefront of driving
           economic and environmental solutions to solve the world's challenges.
@@ -118,7 +122,7 @@ const Homepage = () => {
             ))}
         </div>
       </div>
-      
+
       <p className="text-gray-600 mb-8">
         Our heroes are the people who make it possible for us to do what we do.
       </p>

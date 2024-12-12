@@ -31,7 +31,7 @@ export const login_token = async (username, password) => {
   try {
     const response = await api.post("/login/", { username, password });
     const data = response.data;
-    // localStorage.setItem("accessToken", data.access_token);
+    // console.log(data);
 
     if (response.data.success === true) {
       localStorage.setItem("accessToken", data.access_token);
