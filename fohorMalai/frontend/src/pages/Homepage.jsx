@@ -33,7 +33,7 @@ const Homepage = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center border h-full w-full pt-20">
+    <div className="flex flex-col items-center justify-center border h-full w-full">
       {/* Hero Section */}
       <div className="h-screen w-screen relative">
         {/* Background Image */}
@@ -51,7 +51,7 @@ const Homepage = () => {
             Step at a Time
           </h1>
           <h2 className="text-lg md:text-2xl text-white font-semibold mt-4">
-            Embrace the beatuy of the future with us.
+            Embrace the beauty of the future with us.
           </h2>
         </div>
       </div>

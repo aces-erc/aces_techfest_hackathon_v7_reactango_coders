@@ -6,8 +6,8 @@ const HeroCard = ({
   alt = "Hero image" 
 }) => {
   return (
-    <div className="h-52 flex flex-col items-center p-4 rounded-lg shadow-md max-w-xs mb-20">
-      <div className="w-48 h-48 mb-4">
+    <div className="flex flex-col items-center p-4 rounded-lg shadow-md max-w-xs">
+      <div className="w-48 h-52 mb-4">
         <img 
           src={imageUrl} 
           alt={alt}
