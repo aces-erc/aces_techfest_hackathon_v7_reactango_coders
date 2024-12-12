@@ -4,11 +4,11 @@ import { getUser } from "../api/endPoints";
 
 export function ProtectedUser({ children }) {
   const { pathname } = useLocation();
-  const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
   const username = localStorage.getItem("username");
 
   const checkVerified = async () => {
+    const accessToken = localStorage.getItem("accessToken");
     if (accessToken === null) {
       return navigate("/");
     }

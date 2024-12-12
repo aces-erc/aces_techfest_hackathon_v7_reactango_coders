@@ -151,3 +151,96 @@ export const getMyWasteRequests = async (username) => {
     console.log(error);
   }
 };
+
+export const getUserByUsername = async (username) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+    if (!token) {
+      throw new Error("No access token found");
+    }
+    const response = await api.get(`/role/${username}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const userRole = response.data.role;
+    // Save role to localStorage
+    localStorage.setItem("userRole", userRole);
+
+    return userRole;
+  } catch (error) {
+    console.error("Failed to get user:", error);
+    throw error;
+  }
+};
+
+export const getUserByRole = () => {
+  const role = localStorage.getItem("userRole");
+  return role;
+};
+
+export const pullRequests = async () => {
+  try {
+    const token = localStorage.getItem("accessToken");
+    let response;
+
+    if (token) {
+      response = await api.get(`/wastes/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+
+      return response;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const acceptRequest = async (id) => {
+  const token = localStorage.getItem("accessToken");
+
+  if (!token) {
+    console.error("Authorization token is missing. Please log in.");
+    throw new Error("Authorization token is missing.");
+  }
+
+  try {
+    const response = await api.patch(
+      `/tasks/accept/${id}/`, // URL
+      {}, // Empty body
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(
+      "Failed to accept the request:",
+      error.response || error.message
+    );
+    throw error; // Rethrow error for higher-level handling
+  }
+};
+
+export const rejectRequest = async (id) => {
+  const token = localStorage.getItem("accessToken");
+  try {
+    const response = await api.patch(
+      `/tasks/${id}/reject/`, // URL
+      {}, // Empty body
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};

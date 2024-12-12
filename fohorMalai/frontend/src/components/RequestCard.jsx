@@ -1,48 +1,61 @@
 import React, { useState } from "react";
+import { acceptRequest, rejectRequest } from "../api/endPoints";
 
-const RequestCard = ({ request, onAccept, onReject }) => {
-  const { username, phone, location, wasteType } = request;
+const RequestCard = ({ request }) => {
+  const {
+    id,
+    username,
+    phone,
+    status_display,
+    location_display,
+    waste_type_display,
+  } = request;
 
   const [status, setStatus] = useState("pending");
+  const handleAccept = async () => {
+    const res = await acceptRequest(id);
+    console.log(id);
 
-  // Handle accept request
-  const handleAccept = () => {
-    setStatus("accepted");
-    onAccept(request);
+    console.log(res);
   };
 
   // Handle reject request
-  const handleReject = () => {
-    setStatus("rejected");
-    onReject(request);
+  const handleReject = async () => {
+    const res = await rejectRequest(id);
   };
 
   return (
-    <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-6 w-80 m-4 hover:shadow-md transition-shadow duration-300">
+    <div className="bg-white border border-gray-200 shadow-sm rounded-lg p-6 m-4 hover:shadow-md transition-shadow duration-300">
       {/* Card Header */}
       <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center tracking-wide">
         Waste Removal Request
       </h2>
 
+      {request && (
+        <div className="text-gray-500 space-y-3 mb-6 text-sm">
+          <div className="flex justify-between">
+            <span className="font-medium">Username:</span>
+            <span>{username}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Phone:</span>
+            <span>{phone}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Location:</span>
+            <span>{location_display}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Waste Type:</span>
+            <span>{waste_type_display}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="font-medium">Status:</span>
+            <span>{status_display}</span>
+          </div>
+        </div>
+      )}
       {/* User Information */}
-      <div className="text-gray-500 space-y-3 mb-6 text-sm">
-        <div className="flex justify-between">
-          <span className="font-medium">Username:</span>
-          <span>{username}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium">Phone:</span>
-          <span>{phone}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium">Location:</span>
-          <span>{location}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-medium">Waste Type:</span>
-          <span>{wasteType}</span>
-        </div>
-      </div>
 
       {/* Divider */}
       <hr className="mb-4 border-t border-gray-200" />

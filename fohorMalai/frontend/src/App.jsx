@@ -13,9 +13,7 @@ import LandingPage from "./pages/LandingPage";
 import ContactUs from "./pages/Contact";
 import About from "./pages/AboutUs";
 import RequestPage from "./pages/RequestPage";
-import CollectorDashboard from "./components/CollectorDashboard";
-
-
+import CollectorDashboard from "./pages/CollectorDashboard";
 
 function App() {
   return (
@@ -87,17 +85,17 @@ function App() {
             }
           />
           <Route
-            path="/request"
+            path="/services"
             element={
               <ProtectedUser>
                 <RequestPage />
               </ProtectedUser>
             }
           />
+          <Route path="/dashboard" element={<CollectorDashboard  />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {/* <CollectorDashboard/> */}
       <ToastContainer />
     </>
   );

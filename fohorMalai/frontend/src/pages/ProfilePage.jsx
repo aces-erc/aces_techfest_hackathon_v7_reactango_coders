@@ -21,6 +21,17 @@ const Profile = () => {
     }
   }
 
+  const convertTo12HourFormat = (isoString) => {
+    const date = new Date(isoString);
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+    };
+    return date.toLocaleString("en-US", options);
+  };
+
   useEffect(() => {
     const fetchRequests = async () => {
       try {
@@ -81,7 +92,7 @@ const Profile = () => {
               {request &&
                 request.map((req, index) => (
                   <tr key={index} className="border-b hover:bg-green-200">
-                    <td className="p-3">{req.collection_date}</td>
+                    <td className="p-3">{convertTo12HourFormat(req.collection_date)}</td>
                     <td className="p-3">{req.waste_type_display}</td>
                     <td className="p-3">{req.waste_weight}</td>
                     {/* fix the color for different status of the req */}
