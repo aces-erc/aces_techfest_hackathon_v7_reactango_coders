@@ -1,6 +1,7 @@
 import React from "react";
 import Landing from "../assets/landing.avif";
 import { Link } from "react-router-dom";
+import DustbinMap from "../components/DustbinMap";
 
 const LandingPage = () => {
   return (
@@ -20,7 +21,7 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <div className="h-full w-full relative">
+      <div className=" w-full relative">
         {/* Background Image */}
         <div
           className="absolute inset-0 bg-no-repeat bg-cover bg-center"
@@ -50,6 +51,8 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+
+      <DustbinMap />
     </div>
   );
 };

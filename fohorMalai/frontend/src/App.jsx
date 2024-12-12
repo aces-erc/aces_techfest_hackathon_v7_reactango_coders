@@ -13,6 +13,9 @@ import LandingPage from "./pages/LandingPage";
 import ContactUs from "./pages/Contact";
 import About from "./pages/AboutUs";
 import RequestPage from "./pages/RequestPage";
+import CollectorDashboard from "./components/CollectorDashboard";
+
+
 
 function App() {
   return (
@@ -94,6 +97,7 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      {/* <CollectorDashboard/> */}
       <ToastContainer />
     </>
   );
