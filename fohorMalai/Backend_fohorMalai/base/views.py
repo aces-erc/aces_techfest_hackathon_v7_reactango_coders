@@ -367,7 +367,7 @@ def accept_task(request, id):
         print(request.user)
         print("ya samma aayo")
         waste = Waste.objects.get(id=id)
-        print(waste)
+        
         # Ensure the waste record belongs to the authenticated user
         if waste.user != request.user:
             return Response({"error": "You are not authorized to accept this waste."}, 
