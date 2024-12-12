@@ -20,7 +20,6 @@ const Profile = () => {
         console.log(error);
       }
     };
-
     fetchRequests();
   }, []);
 

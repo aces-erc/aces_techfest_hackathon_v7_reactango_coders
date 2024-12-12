@@ -11,7 +11,7 @@ import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
 import ProtectedUser from "./protected/ProtectedUser";
 import LandingPage from "./pages/LandingPage";
 import ContactUs from "./pages/Contact";
-import AboutUs from "./pages/About";
+import About from "./pages/AboutUs";
 import RequestPage from "./pages/RequestPage";
 
 function App() {
@@ -79,7 +79,7 @@ function App() {
             path="/about"
             element={
               <ProtectedUser>
-                <AboutUs />
+                <About />
               </ProtectedUser>
             }
           />

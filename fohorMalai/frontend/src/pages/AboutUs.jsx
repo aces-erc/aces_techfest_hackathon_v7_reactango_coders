@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div className="bg-lime-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-green-400 text-white py-12">
+      <section className="bg-green-400 mt-14 text-white py-12">
         <div className="container mx-auto px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">About Us</h1>
           <p className="text-lg font-bold md:text-xl">

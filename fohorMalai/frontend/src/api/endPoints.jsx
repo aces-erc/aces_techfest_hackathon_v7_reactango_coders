@@ -117,7 +117,7 @@ export const postRequest = async (items) => {
   }
 };
 
-export const getMyWasteRequests = async (username) => {
+export const getCollectionRequest = async (username) => {
   try {
     const token = localStorage.getItem("accessToken");
     let response;
@@ -129,6 +129,25 @@ export const getMyWasteRequests = async (username) => {
         },
       });
       console.log(response);
+      return response.data;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMyWasteRequests = async (username) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+    let response;
+
+    if (token) {
+      response = await api.get(`/my-wastes/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return response.data;
     }
   } catch (error) {
