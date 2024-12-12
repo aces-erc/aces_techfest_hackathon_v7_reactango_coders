@@ -4,7 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validation/formValidation"; // Import the schema
 import { login_token } from "../api/endPoints";
 import BGImg from "../assets/signup.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const {
@@ -14,11 +15,16 @@ const Login = () => {
   } = useForm({
     resolver: yupResolver(loginSchema),
   });
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
-      const token = await login_token(data.username, data.password);
-      console.log(token);
+      const response = await login_token(data.username, data.password);
+      // console.log(response);
+      if (response.status === 200) {
+        toast("Login Successful!");
+        navigate(`/home/${data.username}`);
+      }
     } catch (error) {
       console.log(error);
     }

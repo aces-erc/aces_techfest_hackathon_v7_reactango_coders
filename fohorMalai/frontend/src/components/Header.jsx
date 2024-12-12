@@ -1,12 +1,27 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { header } from "../links/header";
+import { CiUser } from "react-icons/ci";
+import { logout } from "../api/endPoints";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
+  };
+
+  const handleLogout = async () => {
+    const res = await logout();
+    if (res.status === 200) {
+      toast("Logged out successfully!");
+      navigate("/signup");
+    } else {
+      toast.warn("Login Failed! Please try again later!");
+    }
+    // console.log(res);
   };
 
   return (
@@ -36,30 +51,29 @@ const Header = () => {
 
         {/* Profile Section */}
         <div className="relative">
-          <img
-            src=""
-            alt="Profile"
-            className="w-10 h-10 rounded-full border border-gray-300 cursor-pointer"
+          <CiUser
+            className="w-10 p-2 h-10 rounded-full border border-gray-300 cursor-pointer"
             onClick={toggleDropdown}
+            size={24}
           />
           {isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
               <ul className="py-2">
                 <li>
                   <a
-                    href="#profile"
+                    href="/profile"
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
                   >
                     Profile
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#signout"
+                  <div
+                    onClick={handleLogout}
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
                   >
                     Sign Out
-                  </a>
+                  </div>
                 </li>
               </ul>
             </div>

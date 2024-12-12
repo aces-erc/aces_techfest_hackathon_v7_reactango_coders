@@ -3,11 +3,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../validation/formValidation";
 import BGImg from "../assets/signup.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signup_token } from "../api/endPoints";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const [role, setRole] = useState("User");
+  const navigate = useNavigate();
+
 
   const {
     register,
@@ -21,7 +24,6 @@ const Signup = () => {
     const userRole = data.role === "User" ? "NU" : "WC";
     try {
       const { username, email, password, phone } = data;
-      // console.log(username, email, password, userRole, phone);
       const response = await signup_token(
         username,
         email,
@@ -29,7 +31,11 @@ const Signup = () => {
         userRole,
         phone
       );
-      console.log(response);
+
+      if (response.status === 200) {
+        toast("Successfully signed up!");
+        navigate("/login");
+      }
     } catch (error) {
       console.log(error);
     }
