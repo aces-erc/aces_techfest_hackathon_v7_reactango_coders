@@ -408,3 +408,15 @@ def reject_task(request, id):
 @api_view(['GET'])
 def get_helllo(request):
     return Response({"Mesage":"hello"})
+
+
+
+@api_view(['GET'])
+def get_role_from_username(request, pk):
+    try:
+        user = MyUser.objects.get(username=pk)
+        return Response({"role": user.role})
+    except MyUser.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+    except Exception as e:
+        return Response({"error": f"Error in getting role: {str(e)}"}, status=500)
