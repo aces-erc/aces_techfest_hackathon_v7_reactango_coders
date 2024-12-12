@@ -59,7 +59,6 @@ export const signup_token = async (username, email, password, role, phone) => {
 export const logout = async () => {
   try {
     const res = await api.post("/logout/");
-    // console.log(res);
     return res;
   } catch (error) {
     console.log(error);

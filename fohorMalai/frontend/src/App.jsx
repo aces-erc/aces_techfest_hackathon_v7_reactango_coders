@@ -1,4 +1,3 @@
-// see the / path and the /home path
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
@@ -10,11 +9,21 @@ import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "./pages/ProfilePage";
 import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
 import ProtectedUser from "./protected/ProtectedUser";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <>
       <Routes>
+        <Route
+          path="/"
+          element={
+            <RedirectIfAuthenticated>
+              <LandingPage />
+            </RedirectIfAuthenticated>
+          }
+        />
+
         <Route
           path="/signup"
           element={
@@ -33,15 +42,28 @@ function App() {
         />
 
         <Route
-          path="/"
           element={
             <ProtectedUser>
               <UserLayout />
             </ProtectedUser>
           }
         >
-          <Route path="/home/:username" element={<Homepage />} />
-          <Route path="/profile/:username" element={<ProfilePage />} />
+          <Route
+            path="/home/:username"
+            element={
+              <ProtectedUser>
+                <Homepage />
+              </ProtectedUser>
+            }
+          />
+          <Route
+            path="/profile/:username"
+            element={
+              <ProtectedUser>
+                <ProfilePage />
+              </ProtectedUser>
+            }
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

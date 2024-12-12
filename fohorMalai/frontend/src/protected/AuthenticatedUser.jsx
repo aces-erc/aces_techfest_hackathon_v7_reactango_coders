@@ -1,15 +1,24 @@
+import { use } from "react";
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const RedirectIfAuthenticated = ({ children }) => {
   const user = localStorage.getItem("username");
+  console.log(user);
 
-  // If the user is already authenticated, redirect them to their home page
-  if (user) {
-    return <Navigate to={`/home/${user}`} replace />;
-  }
+  const navigate = useNavigate();
 
-  // Otherwise, render the children (public content)
+  const checkAuthentication = () => {
+    if (user !== null) {
+      return navigate(`/home/${user}`);
+    } else {
+      return navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+  }, [user]);
   return children;
 };
 

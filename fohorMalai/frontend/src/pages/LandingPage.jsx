@@ -1,10 +1,10 @@
-import React from 'react'
-import Landing from '../src/assets/landing.avif'
-import { Link } from 'react-router-dom'
+import React from "react";
+import Landing from "../assets/landing.avif";
+import { Link } from "react-router-dom";
 
 const LandingPage = () => {
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className="h-screen w-full overflow-hidden">
       {/* Transparent Header */}
       <header className="fixed top-0 z-50 w-full bg-transparent">
         <nav className="flex items-center justify-center py-2">
@@ -12,7 +12,7 @@ const LandingPage = () => {
           <div className="flex items-center">
             <h1 className="text-4xl font-samarkan font-extrabold text-white">
               <Link to={"/"}>
-              <span className="text-green-400">Fohor</span>Malai
+                <span className="text-green-400">Fohor</span>Malai
               </Link>
             </h1>
           </div>
@@ -34,10 +34,11 @@ const LandingPage = () => {
           {/* Slogan with Drop Shadow */}
           <div>
             <h1 className="text-4xl md:text-7xl font-extrabold text-white drop-shadow-2xl">
-              <span className="text-green-400">Your Waste,</span> <br /> Our Responsibility
+              <span className="text-green-400">Your Waste,</span> <br /> Our
+              Responsibility
             </h1>
             <h2 className="text-lg md:text-2xl text-white font-bold mt-4 drop-shadow-md">
-            Together for a Greener Future.
+              Together for a Greener Future.
             </h2>
           </div>
 
@@ -50,7 +51,7 @@ const LandingPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LandingPage
+export default LandingPage;

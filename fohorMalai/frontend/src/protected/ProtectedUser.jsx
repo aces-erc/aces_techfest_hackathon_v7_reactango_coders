@@ -1,14 +1,22 @@
-import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export function ProtectedUser({ children }) {
+  const navigate = useNavigate();
   const username = localStorage.getItem("username");
+  console.log("username " + username);
 
-  // If no username is found in localStorage, redirect to login
-  if (!username) {
-    return <Navigate to="/login" replace />;
-  }
+  const checkVerified = () => {
+    if (username === null) {
+      return navigate("/");
+    } else {
+      return children;
+    }
+  };
 
-  // If authenticated, render the children (protected content)
+  useEffect(() => {
+    checkVerified();
+  }, [username]);
   return children;
 }
 
