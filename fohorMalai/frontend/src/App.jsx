@@ -10,11 +10,13 @@ import ProfilePage from "./pages/ProfilePage";
 import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
 import ProtectedUser from "./protected/ProtectedUser";
 import LandingPage from "./pages/LandingPage";
+import Contact from "./pages/Contact";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
     <>
-      <Routes>
+      {/* <Routes>
         <Route
           path="/"
           element={
@@ -66,7 +68,9 @@ function App() {
           />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      </Routes> */}
+      {/* <AboutUs /> */}
+      <Contact />
       <ToastContainer />
     </>
   );
