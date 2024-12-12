@@ -1,27 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { header } from "../links/header";
 import { CiUser } from "react-icons/ci";
 import { logout } from "../api/endPoints";
 import { toast } from "react-toastify";
+import { UserContext } from "../context/AuthContext";
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
 
   const handleLogout = async () => {
-    const res = await logout();
-    if (res.status === 200) {
-      toast("Logged out successfully!");
-      navigate("/signup");
-    } else {
-      toast.warn("Login Failed! Please try again later!");
+    try {
+      const res = await logout();
+      if (res.status === 200) {
+        localStorage.removeItem("username");
+        localStorage.removeItem("auth");
+        toast("Logged out successfully!");
+        navigate("/signup");
+      } else {
+        toast.warn("Login Failed! Please try again later!");
+      }
+    } catch (error) {
+      console.log(error);
     }
-    // console.log(res);
   };
 
   return (
@@ -36,6 +43,14 @@ const Header = () => {
 
         {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8">
+          <li>
+            <Link
+              to={`/home/${username}`}
+              className="text-gray-600 hover:text-green-400 font-medium"
+            >
+              Home
+            </Link>
+          </li>
           {header &&
             header.map((header, index) => (
               <li key={index}>
@@ -60,12 +75,12 @@ const Header = () => {
             <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-10">
               <ul className="py-2">
                 <li>
-                  <a
-                    href="/profile"
+                  <Link
+                    to={`/profile/${username}`}
                     className="block px-4 py-2 text-gray-600 hover:bg-gray-100"
                   >
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <div

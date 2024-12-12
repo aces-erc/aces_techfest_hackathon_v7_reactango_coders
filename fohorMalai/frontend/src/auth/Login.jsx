@@ -20,7 +20,6 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await login_token(data.username, data.password);
-      // console.log(response);
       if (response.status === 200) {
         toast("Login Successful!");
         navigate(`/home/${data.username}`);

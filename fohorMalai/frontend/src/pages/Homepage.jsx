@@ -1,14 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Home from "../assets/home-banner.avif";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HeroCard from "../components/HeroCard";
-
 import { heros } from "../links/heros";
 import { sections } from "../links/sections";
+import { UserContext } from "../context/AuthContext";
 
 const Homepage = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { username } = useParams();
+  // const { setUsername } = useContext(UserContext);
+
+  // useEffect(() => {
+  //   if (username) {
+  //     setUsername(username);
+  //   } else if (!username) {
+  //     navigate("/login");
+  //   }
+  // }, []);
 
   return (
     <div className="flex flex-col items-center justify-center border h-full w-full">
