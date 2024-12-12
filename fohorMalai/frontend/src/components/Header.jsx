@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className="shadow-md bg-white">
+    <header className="fixed top-0 z-50 w-full shadow-md bg-white">
       <nav className="flex items-center justify-between p-4">
         {/* Logo Section */}
         <div>
