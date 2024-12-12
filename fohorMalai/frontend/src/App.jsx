@@ -5,6 +5,7 @@ import Signup from "./auth/Signup";
 import Homepage from "./pages/Homepage";
 import UserLayout from "./Layout/UserLayout";
 import NotFoundPage from "./components/404NotFound";
+import RequestPage from "./components/RequestPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<UserLayout />}>
           <Route index element={<Homepage />} />
+          <Route path="/request" element={<RequestPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
