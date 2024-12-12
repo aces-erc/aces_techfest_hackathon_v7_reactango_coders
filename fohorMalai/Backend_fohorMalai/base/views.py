@@ -369,13 +369,17 @@ def accept_task(request, id):
         waste = Waste.objects.get(id=id)
         
         # Ensure the waste record belongs to the authenticated user
-        if waste.user != request.user:
-            return Response({"error": "You are not authorized to accept this waste."}, 
-                            status=status.HTTP_403_FORBIDDEN)
+        # if waste.user != request.user:
+        #     return Response({"error": "You are not authorized to accept this waste."}, 
+        #                     status=status.HTTP_403_FORBIDDEN)
 
         waste.status = 'Accepted'
         waste.save()
-        serializer = WasteSerializer(waste)
+        if waste.status == 'Accepted':
+            a = True
+        if a:
+        # if waste.status:
+            serializer = WasteSerializer(waste)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     except Waste.DoesNotExist:
@@ -391,9 +395,9 @@ def reject_task(request, id):
         waste = Waste.objects.get(id=id)
 
         # Ensure the waste record belongs to the authenticated user
-        if waste.user != request.user:
-            return Response({"error": "You are not authorized to reject this waste."}, 
-                            status=status.HTTP_403_FORBIDDEN)
+        # if waste.user != request.user:
+        #     return Response({"error": "You are not authorized to reject this waste."}, 
+        #                     status=status.HTTP_403_FORBIDDEN)
 
         waste.status = 'Rejected'
         waste.save()

@@ -2,24 +2,13 @@ import React, { useState } from "react";
 import { acceptRequest, rejectRequest } from "../api/endPoints";
 
 const RequestCard = ({ request }) => {
-  const {
-    id,
-    username,
-    phone,
-    status_display,
-    location_display,
-    waste_type_display,
-  } = request;
-
+  const { id, status_display, location_display, waste_type_display } = request;
   const [status, setStatus] = useState("pending");
+
   const handleAccept = async () => {
     const res = await acceptRequest(id);
-    console.log(id);
-
-    console.log(res);
   };
 
-  // Handle reject request
   const handleReject = async () => {
     const res = await rejectRequest(id);
   };
@@ -35,11 +24,11 @@ const RequestCard = ({ request }) => {
         <div className="text-gray-500 space-y-3 mb-6 text-sm">
           <div className="flex justify-between">
             <span className="font-medium">Username:</span>
-            <span>{username}</span>
+            <span>{request.user.username}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Phone:</span>
-            <span>{phone}</span>
+            <span>{request.user.phone}</span>
           </div>
           <div className="flex justify-between">
             <span className="font-medium">Location:</span>

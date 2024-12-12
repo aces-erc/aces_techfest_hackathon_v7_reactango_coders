@@ -133,7 +133,7 @@ export const getCollectionRequest = async (username) => {
   }
 };
 
-export const getMyWasteRequests = async (username) => {
+export const getMyWasteRequests = async () => {
   try {
     const token = localStorage.getItem("accessToken");
     let response;
@@ -190,8 +190,6 @@ export const pullRequests = async () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response);
-
       return response;
     }
   } catch (error) {
@@ -213,6 +211,8 @@ export const acceptRequest = async (id) => {
       {}, // Empty body
       {
         headers: {
+          "Content-Type": "application/json",
+          // "X-CSRFToken": csrfToken,
           Authorization: `Bearer ${token}`,
         },
       }
@@ -239,7 +239,7 @@ export const rejectRequest = async (id) => {
         },
       }
     );
-    console.log(response);
+    return response.data;
   } catch (error) {
     console.log(error);
   }
