@@ -18,11 +18,11 @@ const Login = () => {
 
   const handleToggle = () => {
     if (type === "password") {
-      setIcon(eye); // Change icon to 'eye' when password is visible
-      setType("text"); // Set input type to text to show password
+      setIcon(eye);
+      setType("text"); 
     } else {
-      setIcon(eyeOff); // Change icon to 'eyeOff' when password is hidden
-      setType("password"); // Set input type back to password to hide it
+      setIcon(eyeOff); 
+      setType("password");
     }
   };
 
@@ -69,10 +69,7 @@ const Login = () => {
             <span className="font-extrabold text-green-700">Fohor</span>
             <span>Malai</span>
           </h1>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="w-full flex-1 mt-8 p-10"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="w-full flex-1 mt-8 p-10">
             <div className="mx-auto max-w-md flex flex-col gap-4">
               <input
                 className="w-full px-5 py-3 rounded-md font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-blue-600 focus:bg-blue-100"
@@ -108,9 +105,7 @@ const Login = () => {
               </p>
 
               <div>
-                <span className="text-blue-900 ml-1 font-semibold">
-                  Forgot Password?
-                </span>
+                <span className="text-blue-900 ml-1 font-semibold">Forgot Password?</span>
                 <button className="mt-2 tracking-wide font-semibold bg-blue-700 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-500 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   <span className="ml-3">Login</span>
                 </button>
@@ -118,9 +113,7 @@ const Login = () => {
                 <p className="mt-6 text-lg text-gray-600 text-center">
                   Don't have an account yet?{" "}
                   <Link to="/signup">
-                    <span className="text-md underline text-blue-900 font-semibold">
-                      signup
-                    </span>
+                    <span className="text-md underline text-blue-900 font-semibold">signup</span>
                   </Link>
                 </p>
               </div>
