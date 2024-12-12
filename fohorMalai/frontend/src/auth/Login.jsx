@@ -1,14 +1,12 @@
-// <<<<<<< HEAD
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validation/formValidation"; // Import the schema
+import { login_token } from "../api/endPoints";
+import BGImg from "../assets/signup.jpg";
 import { Link } from "react-router-dom";
 
-import BGImg from "../assets/signup.jpg";
-
 const Login = () => {
-
   const {
     register,
     handleSubmit,
@@ -18,7 +16,12 @@ const Login = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
+    try {
+      const token = await login_token(data.username, data.password);
+      console.log(token);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -66,6 +69,15 @@ const Login = () => {
                 <button className="mt-2 tracking-wide font-semibold bg-blue-700 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-500 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   <span className="ml-3">Login</span>
                 </button>
+
+                <p className="mt-6 text-lg text-gray-600 text-center">
+                  Don't have a account yet?{" "}
+                  <Link to="/signup">
+                    <span className=" text-md underline text-blue-900 font-semibold">
+                      signup
+                    </span>
+                  </Link>
+                </p>
               </div>
             </div>
           </form>

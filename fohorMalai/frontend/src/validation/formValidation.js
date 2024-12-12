@@ -5,7 +5,7 @@ export const loginSchema = yup.object().shape({
     username: yup
       .string()
       .required("Username is required")
-      .min(8, "Username must be at least 3 characters long")
+      .min(4, "Username must be at least 3 characters long")
       .max(69, "Username must be at most 20 characters long"),
     password: yup
       .string()
@@ -26,6 +26,9 @@ export const loginSchema = yup.object().shape({
     .required("Password is required")
     .min(8, "Password must be at least 8 characters")
     .max(20, "Password must not exceed 20 characters"),
+
+    phone: yup.string()
+    .required("Phone number is required"),
 
     confirmPassword: yup.string()
     .oneOf([yup.ref("password"), null], "Confirm Password does not match with Password"),

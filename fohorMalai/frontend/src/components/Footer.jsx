@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 h-96 text-gray-300 py-8">
+    <footer className=" relative bg-gray-800 p-4 text-gray-300 py-8">
       <div className="container mx-auto flex flex-wrap items-center justify-evenly">
         {/* Logo Section */}
         <div className="w-full md:w-1/3 mb-6 md:mb-0 md:text-left">
-          <h1 className="text-5xl  font-samarkan font-extrabold text-gray-100">
+          <h1 className="text-5xl font-samarkan font-extrabold text-gray-100">
             <span className="text-green-400">Fohor</span>Malai
           </h1>
           <p className="mt-2 text-gray-400">
@@ -17,7 +17,7 @@ const Footer = () => {
 
         {/* Navigation Links */}
         <div className="w-full md:w-1/3 mb-6 md:mb-0">
-          <h3 className="text-3xl text-center  font-bold text-gray-100 mb-4">
+          <h3 className="text-xl text-center  font-bold text-gray-100 mb-4">
             Quick Links
           </h3>
           <ul className="space-y-2 text-center">
@@ -26,7 +26,7 @@ const Footer = () => {
                 <li key={index}>
                   <Link
                     to={link.link}
-                    className=" text-xl hover:text-green-400 transition-colors"
+                    className=" text-sm hover:text-green-400 transition-colors"
                   >
                     {link.title}
                   </Link>

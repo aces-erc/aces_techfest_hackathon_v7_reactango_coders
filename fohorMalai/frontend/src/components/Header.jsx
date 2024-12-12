@@ -10,7 +10,7 @@ const Header = () => {
   };
 
   return (
-    <header className="shadow-md bg-white">
+    <header className="fixed top-0 z-50 w-full shadow-md bg-white">
       <nav className="flex items-center justify-between p-4">
         {/* Logo Section */}
         <div>
@@ -38,7 +38,7 @@ const Header = () => {
         {/* Profile Section */}
         <div className="relative">
           <img
-            src="https://via.placeholder.com/40"
+            src=""
             alt="Profile"
             className="w-10 h-10 rounded-full border border-gray-300 cursor-pointer"
             onClick={toggleDropdown}
