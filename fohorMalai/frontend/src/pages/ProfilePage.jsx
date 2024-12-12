@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import coverImg from "../assets/login.avif";
 import profileImg from "../assets/landing.avif";
+import { get } from "react-hook-form";
+import { getMyWasteRequests } from "../api/endPoints";
+import { useParams } from "react-router-dom";
 
 // wastes/[username]
 
 const Profile = () => {
+  const username = useParams();
+  const [request, setRequest] = useState([]);
+
+  useEffect(() => {
+    const fetchRequests = async () => {
+      try {
+        const res = await getMyWasteRequests(username);
+        setRequest(res);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchRequests();
+  }, []);
+
   return (
-    <div className="h-full w-full bg-gray-50 flex flex-col items-center">
+    <div className="h-full w-full bg-lime-50 flex flex-col items-center">
       {/* Profile Cover */}
       <div
         className="w-full h-64 relative shadow-md"
@@ -59,36 +78,18 @@ const Profile = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b hover:bg-green-200">
-                <td className="p-3">2024-07-05</td>
-                <td className="p-3">Degradable Waste Pickup</td>
-                <td className="p-3">12</td>
-                <td className="p-3 text-green-500 font-medium">Completed</td>
-              </tr>
-              <tr className="border-b hover:bg-yellow-100">
-                <td className="p-3">2024-06-28</td>
-                <td className="p-3">Non-Biodegradable Pickup</td>
-                <td className="p-3">8</td>
-                <td className="p-3 text-yellow-500 font-medium">Pending</td>
-              </tr>
-              <tr className="border-b hover:bg-green-200">
-                <td className="p-3">2024-06-15</td>
-                <td className="p-3">Degradable Waste Pickup</td>
-                <td className="p-3">15</td>
-                <td className="p-3 text-green-500 font-medium">Completed</td>
-              </tr>
-              <tr className="border-b hover:bg-red-200">
-                <td className="p-3">2024-10-15</td>
-                <td className="p-3">Degradable Waste Pickup</td>
-                <td className="p-3">11</td>
-                <td className="p-3 text-red-500 font-medium">Rejected</td>
-              </tr>
-              <tr className="border-b hover:bg-blue-200">
-                <td className="p-3">2024-07-15</td>
-                <td className="p-3">Non-Biodegradable Waste Pickup</td>
-                <td className="p-3">9</td>
-                <td className="p-3 text-blue-500 font-medium">Accepted</td>
-              </tr>
+              {request &&
+                request.map((req, index) => (
+                  <tr key={index} className="border-b hover:bg-green-200">
+                    <td className="p-3">{req.collection_date}</td>
+                    <td className="p-3">{req.waste_type_display}</td>
+                    <td className="p-3">{req.waste_weight}</td>
+                    {/* fix the color for different status of the req */}
+                    <td className="p-3 text-green-500 font-medium">
+                      {req.status_display}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

@@ -6,6 +6,7 @@ import { login_token } from "../api/endPoints";
 import BGImg from "../assets/signup.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Bounce } from "react-toastify";
 
 const Login = () => {
   const {
@@ -21,10 +22,21 @@ const Login = () => {
     try {
       const response = await login_token(data.username, data.password);
       if (response.status === 200) {
-        toast("Login Successful!");
+        toast.success("Login Successfull", { autoClose: 1000 });
         navigate(`/home/${data.username}`);
       }
     } catch (error) {
+      toast("Invalid credentail", {
+        position: "top-right",
+        autoClose: 12000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       console.log(error);
     }
   };

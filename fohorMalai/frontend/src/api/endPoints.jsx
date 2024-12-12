@@ -96,6 +96,7 @@ export const getUser = async (username) => {
   }
 };
 
+// rename to postWasteRequest
 export const postRequest = async (items) => {
   try {
     const token = localStorage.getItem("accessToken");
@@ -110,6 +111,25 @@ export const postRequest = async (items) => {
       console.log(response);
 
       return response;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getMyWasteRequests = async (username) => {
+  try {
+    const token = localStorage.getItem("accessToken");
+    let response;
+
+    if (token) {
+      response = await api.get(`/wastes/`, username, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response);
+      return response.data;
     }
   } catch (error) {
     console.log(error);
