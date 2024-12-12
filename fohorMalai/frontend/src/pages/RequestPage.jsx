@@ -17,9 +17,6 @@ const RequestPage = () => {
   });
 
   const onSubmit = async (data) => {
-    // const username = localStorage.getItem("username");
-    // console.log(username);
-
     try {
       const { wasteType, wasteWeight, urgency, location } = data;
       const requestData = {
@@ -39,10 +36,10 @@ const RequestPage = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex items-center justify-center bg-lime-50 m-16">
+    <div className="h-screen  flex items-center justify-center bg-lime-50 mt-14">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-gray-50 p-8 rounded-lg shadow-2xl w-[40%] h-[90%] flex flex-col justify-between"
+        className="bg-gray-50 p-8 rounded-lg shadow-2xl w-[40%] h-[80%] flex flex-col justify-between"
       >
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
           Waste Removal Request
