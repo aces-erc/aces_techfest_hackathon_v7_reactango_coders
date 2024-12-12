@@ -58,14 +58,31 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 
-REST_FRAMEWORK = {
+# REST_FRAMEWORK = {
     
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
         
-        'base.Authenticate.CookiesAuthentication',
-    )
-    
-}
+#         'base.Authenticate.CookiesAuthentication',
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#         'rest_framework.authentication.BasicAuthentication',
+#     ),
+#     # 'DEFAULT_PERMISSION_CLASSES': (
+#     #     'rest_framework.permissions.IsAuthenticated',
+#     # ),
+#     'DEFAULT_PERMISSION_CLASSES': [
+#    'rest_framework.permissions.AllowAny',
+# ]
+# }
+
+# JWT Configuration
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}   
 
 
 TEMPLATES = [
@@ -140,7 +157,7 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
+    "http://localhost:5174",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -151,12 +168,19 @@ AUTH_USER_MODEL = 'base.MyUser'
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    "USER_ID_FIELD":'username',
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=30),
 }
 
-
+SIMPLE_JWT = {
+    "USER_ID_FIELD":'username',
+    'ALGORITHM': 'HS256',  # Specify the algorithm for signing (HS256 is default)
+    'SIGNING_KEY': SECRET_KEY,  # This is the key used to sign JWTs (default is SECRET_KEY)
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # Access token lifetime
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),  # Refresh token lifetime
+    'ROTATE_REFRESH_TOKENS': False,  # Set to True if you want to rotate refresh tokens
+    'BLACKLIST_AFTER_ROTATION': False,  # Whether to blacklist the old refresh token after rotation
+}
 
 
 import os

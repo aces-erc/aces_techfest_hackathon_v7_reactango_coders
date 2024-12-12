@@ -10,8 +10,8 @@ import ProfilePage from "./pages/ProfilePage";
 import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
 import ProtectedUser from "./protected/ProtectedUser";
 import LandingPage from "./pages/LandingPage";
-import Contact from "./pages/Contact";
-import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/Contact";
+import AboutUs from "./pages/About";
 
 function App() {
   return (
@@ -63,6 +63,22 @@ function App() {
             element={
               <ProtectedUser>
                 <ProfilePage />
+              </ProtectedUser>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <ProtectedUser>
+                <ContactUs />
+              </ProtectedUser>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <ProtectedUser>
+                <AboutUs />
               </ProtectedUser>
             }
           />

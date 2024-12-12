@@ -1,7 +1,7 @@
 import React from "react";
 import Map from "../components/Map";
 
-const Contact = () => {
+const ContactUs = () => {
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-5">
       <div className="max-w-6xl w-full bg-white rounded-lg shadow-md overflow-hidden">
@@ -15,13 +15,14 @@ const Contact = () => {
                 <span>📞</span> 01-5553019
               </p>
               <p className="flex items-center gap-2">
-                <span>✉</span> info@recentair.com
+                <span>✉️</span> info@recentair.com
               </p>
               <p className="flex items-center gap-2">
-                <span>📍</span> Itaha, Nepal
+                <span>📍</span> Pulchowk, Lalitpur, Nepal
               </p>
             </div>
-            <div className="bg-white rounded-md h-60  mt-6 overflow-hidden">a
+            <div className="bg-white h-60 rounded-md mt-6 overflow-hidden">
+              {/* Embed Google Map */}
               <Map />
             </div>
           </div>
@@ -99,4 +100,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default ContactUs;
