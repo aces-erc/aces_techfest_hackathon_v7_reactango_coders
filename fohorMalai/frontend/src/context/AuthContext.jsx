@@ -6,8 +6,8 @@ export const UserContext = createContext();
 
 // Create the provider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: "ashish" }); // User state
-  const [loading, setLoading] = useState(true); // Loading state for async operations
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
 
   /*
   useEffect(() => {
