@@ -9,7 +9,7 @@ import { UserContext } from "../context/AuthContext";
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
-  const { username } = useContext(UserContext);
+  const username = localStorage.getItem("username");
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
@@ -43,6 +43,14 @@ const Header = () => {
 
         {/* Navigation Links */}
         <ul className="hidden md:flex space-x-8">
+          <li>
+            <Link
+              to={`/home/${username}`}
+              className="text-gray-600 hover:text-green-400 font-medium"
+            >
+              Home
+            </Link>
+          </li>
           {header &&
             header.map((header, index) => (
               <li key={index}>

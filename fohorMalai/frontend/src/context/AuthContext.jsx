@@ -6,7 +6,7 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(); // the user details
+  // const [user, setUser] = useState(); // the user details
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
