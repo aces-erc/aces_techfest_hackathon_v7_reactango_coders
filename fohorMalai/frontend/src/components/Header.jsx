@@ -20,7 +20,7 @@ const Header = () => {
       const res = await logout();
       if (res.status === 200) {
         localStorage.removeItem("username");
-        localStorage.removeItem("auth");
+        localStorage.removeItem("accessToken");
         toast("Logged out successfully!");
         navigate("/signup");
       } else {

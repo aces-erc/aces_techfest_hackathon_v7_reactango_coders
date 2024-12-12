@@ -11,7 +11,6 @@ const Signup = () => {
   const [role, setRole] = useState("User");
   const navigate = useNavigate();
 
-
   const {
     register,
     handleSubmit,

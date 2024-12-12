@@ -1,24 +1,29 @@
-import { use } from "react";
 import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 const RedirectIfAuthenticated = ({ children }) => {
   const user = localStorage.getItem("username");
-  console.log(user);
+  const { pathname } = useLocation();
+  const accessToken = localStorage.getItem("accessToken");
 
   const navigate = useNavigate();
 
   const checkAuthentication = () => {
-    if (user !== null) {
+    console.log(pathname);
+    if (pathname === "/login" || pathname === "/signup") {
+      return;
+    }
+
+    if (accessToken !== null) {
       return navigate(`/home/${user}`);
     } else {
-      return navigate("/login");
+      return navigate("/");
     }
   };
 
   useEffect(() => {
     checkAuthentication();
-  }, [user]);
+  }, [navigate]);
   return children;
 };
 

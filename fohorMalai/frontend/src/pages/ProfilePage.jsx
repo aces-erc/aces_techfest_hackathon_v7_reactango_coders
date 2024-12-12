@@ -2,6 +2,8 @@ import React from "react";
 import coverImg from "../assets/login.avif";
 import profileImg from "../assets/landing.avif";
 
+// wastes/[username]
+
 const Profile = () => {
   return (
     <div className="h-full w-full bg-gray-50 flex flex-col items-center">

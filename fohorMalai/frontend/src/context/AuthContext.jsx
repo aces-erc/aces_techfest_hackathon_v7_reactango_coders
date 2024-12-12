@@ -1,49 +1,28 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Loader from "../components/Loader";
+import { getUser } from "../api/endPoints";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const navigate = useNavigate();
-  // const [user, setUser] = useState(); // the user details
+  const [user, setUser] = useState();
+  // const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
-
-  const checkIfAuthenticated = () => {
-    const username = localStorage.getItem("username");
-    if (!username) {
-      setAuthenticated(false);
-    } else {
-      setAuthenticated(true);
-    }
-    return authenticated;
-  };
-
-  useEffect(() => {
-    try {
-      setLoading(true);
-      const status = checkIfAuthenticated();
-      if (!status) {
-        // navigate("/login");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }, [username, Navigate]);
-
+  // const [authenticated, setAuthenticated] = useState(false);
   return (
     <UserContext.Provider
       value={{
         username,
         setLoading,
         setUsername,
+        setUser,
+        user,
       }}
     >
       {loading ? <Loader /> : children}
+      {/* {children} */}
     </UserContext.Provider>
   );
 };

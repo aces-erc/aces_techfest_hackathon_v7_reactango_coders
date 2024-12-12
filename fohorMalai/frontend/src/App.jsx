@@ -4,7 +4,7 @@ import Signup from "./auth/Signup";
 import Homepage from "./pages/Homepage";
 import UserLayout from "./Layout/UserLayout";
 import NotFoundPage from "./components/404NotFound";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "./pages/ProfilePage";
 import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
@@ -12,11 +12,12 @@ import ProtectedUser from "./protected/ProtectedUser";
 import LandingPage from "./pages/LandingPage";
 import ContactUs from "./pages/Contact";
 import AboutUs from "./pages/About";
+import RequestPage from "./pages/RequestPage";
 
 function App() {
   return (
     <>
-      {/* <Routes>
+      <Routes>
         <Route
           path="/"
           element={
@@ -82,11 +83,17 @@ function App() {
               </ProtectedUser>
             }
           />
+          <Route
+            path="/request"
+            element={
+              <ProtectedUser>
+                <RequestPage />
+              </ProtectedUser>
+            }
+          />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
-      </Routes> */}
-      {/* <AboutUs /> */}
-      <Contact />
+      </Routes>
       <ToastContainer />
     </>
   );
