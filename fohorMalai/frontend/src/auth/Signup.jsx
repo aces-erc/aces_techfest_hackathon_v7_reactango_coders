@@ -6,9 +6,12 @@ import BGImg from "../assets/signup.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { signup_token } from "../api/endPoints";
 import { toast } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Signup = () => {
   const [role, setRole] = useState("User");
+  const [passwordType, setPasswordType] = useState("password");
+  const [icon, setIcon] = useState(<FaEyeSlash />); 
   const navigate = useNavigate();
 
   const {
@@ -37,6 +40,16 @@ const Signup = () => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      setIcon(<FaEye />); 
+    } else {
+      setPasswordType("password");
+      setIcon(<FaEyeSlash />); 
     }
   };
 
@@ -91,28 +104,25 @@ const Signup = () => {
                 {errors.phone?.message}
               </p>
 
-              <input
-                className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-blue-600 focus:bg-blue-100"
-                type="password"
-                placeholder="Password"
-                name="password"
-                id="password"
-                {...register("password")}
-              />
+              <div className="relative">
+                <input
+                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-blue-600 focus:bg-blue-100"
+                  type={passwordType} 
+                  placeholder="Password"
+                  name="password"
+                  id="password"
+                  {...register("password")}
+                />
+                <span
+                  onClick={togglePasswordVisibility}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                >
+                  {icon} {/* Display the icon */}
+                </span>
+              </div>
               <p className="text-red-600 text-md font-semibold">
                 {errors.password?.message}
               </p>
-              {/* <input
-                className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-blue-600 focus:bg-blue-100"
-                type="password"
-                placeholder="confirm Password"
-                name="confirmPassword"
-                id="confirmPassword"
-                {...register("confirmPassword")}
-              />
-              <p className="text-red-600 text-md font-semibold">
-                {errors.confirmPassword?.message}
-              </p> */}
 
               <div className="relative">
                 <select
@@ -180,4 +190,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Signup;

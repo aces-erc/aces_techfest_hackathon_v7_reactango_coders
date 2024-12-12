@@ -2,14 +2,24 @@ import React, { useEffect, useState } from "react";
 import coverImg from "../assets/login.avif";
 import profileImg from "../assets/landing.avif";
 import { get } from "react-hook-form";
-import { getMyWasteRequests } from "../api/endPoints";
+import { getMyWasteRequests, getUser } from "../api/endPoints";
 import { useParams } from "react-router-dom";
 
 // wastes/[username]
 
 const Profile = () => {
-  const username = useParams();
+  const { username } = useParams();
+  const [user, setUser] = useState({});
   const [request, setRequest] = useState([]);
+
+  async function fetchUser() {
+    try {
+      const curruser = await getUser(username);
+      setUser(curruser);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -21,7 +31,8 @@ const Profile = () => {
       }
     };
     fetchRequests();
-  }, []);
+    fetchUser();
+  }, [username]);
 
   return (
     <div className="h-full w-full bg-lime-50 flex flex-col items-center">
@@ -46,18 +57,8 @@ const Profile = () => {
 
       {/* Profile Details */}
       <div className="mt-16 text-center">
-        <h1 className="text-3xl font-bold text-gray-800">Shovan Bhattarai</h1>
-        <p className="text-gray-600 mt-2">shovanbthr@gmail.com</p>
-        <p className="text-green-600 font-semibold">User</p>
-        {/* Edit Profile Button */}
-        <div className="mt-6">
-          <a
-            href="/user/editProfile"
-            className="bg-green-500 text-white px-6 py-2 rounded-full shadow hover:bg-green-600 transition-all duration-300"
-          >
-            Edit Profile
-          </a>
-        </div>
+        <h1 className="text-3xl font-bold text-gray-800">{username}</h1>
+        <p className="text-gray-600 mt-2">{user.email}</p>
       </div>
 
       {/* User Records Section */}
@@ -84,7 +85,19 @@ const Profile = () => {
                     <td className="p-3">{req.waste_type_display}</td>
                     <td className="p-3">{req.waste_weight}</td>
                     {/* fix the color for different status of the req */}
-                    <td className="p-3 text-green-500 font-medium">
+                    <td
+                      className={`p-3 font-medium ${
+                        req.status_display === "pending"
+                          ? "text-purple-400"
+                          : req.status_display === "accepted"
+                          ? "text-lime-400"
+                          : req.status_display === "rejected"
+                          ? "text-red-400"
+                          : req.status_display === "completed"
+                          ? "text-green-400"
+                          : ""
+                      }`}
+                    >
                       {req.status_display}
                     </td>
                   </tr>
@@ -94,6 +107,7 @@ const Profile = () => {
         </div>
       </div>
     </div>
+    // `p-3 font-medium `
   );
 };
 
