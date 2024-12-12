@@ -1,10 +1,12 @@
+import { useContext } from "react";
+import { UserContext } from "../context/AuthContext";
+import { useParams } from "react-router-dom";
 
 const ProfilePage = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  const { username } = useParams();
+  console.log(username);
 
-export default ProfilePage
+  return <div></div>;
+};
+
+export default ProfilePage;

@@ -30,7 +30,8 @@ export const login_token = async (username, password) => {
   try {
     const response = await api.post("/login/", { username, password });
     if (response.data.success === true) {
-      localStorage.setItem("auth", response.data.success);
+      // localStorage.setItem("auth", response.data.success);
+      localStorage.setItem("username", username);
     }
     return response;
   } catch (error) {

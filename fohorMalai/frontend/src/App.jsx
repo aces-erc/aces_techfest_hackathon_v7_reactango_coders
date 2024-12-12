@@ -7,20 +7,44 @@ import UserLayout from "./Layout/UserLayout";
 import NotFoundPage from "./components/404NotFound";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ProfilePage from "./pages/ProfilePage";
+import RedirectIfAuthenticated from "./protected/AuthenticatedUser";
+import ProtectedUser from "./protected/ProtectedUser";
 
 function App() {
   return (
     <>
-      <Router>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/" element={<UserLayout />}>
-            <Route path="/home/:username" element={<Homepage />} />
-          </Route>
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route
+          path="/signup"
+          element={
+            <RedirectIfAuthenticated>
+              <Signup />
+            </RedirectIfAuthenticated>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RedirectIfAuthenticated>
+              <Login />
+            </RedirectIfAuthenticated>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <ProtectedUser>
+              <UserLayout />
+            </ProtectedUser>
+          }
+        >
+          <Route path="/home/:username" element={<Homepage />} />
+          <Route path="/profile/:username" element={<ProfilePage />} />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
       <ToastContainer />
     </>
   );
