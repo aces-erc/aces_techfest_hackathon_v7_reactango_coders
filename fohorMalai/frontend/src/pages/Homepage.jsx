@@ -19,7 +19,7 @@ const Homepage = () => {
           className="absolute inset-0 bg-no-repeat bg-cover bg-center"
           style={{
             backgroundImage: `url(${Home})`,
-          }}
+          }}  
         ></div>
 
         {/* Slogan Overlay */}
