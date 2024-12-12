@@ -29,11 +29,11 @@ api.interceptors.response.use(
 export const login_token = async (username, password) => {
   try {
     const response = await api.post("/login/", { username, password });
-    console.log(response.data);
-    // const { access_token } = response.data;
-    // console.log(access_token);
-    // localStorage.setItem("access_token", access_token);
-    return response.data;
+    if (response.data.success === true) {
+      // localStorage.setItem("auth", response.data.success);
+      localStorage.setItem("username", username);
+    }
+    return response;
   } catch (error) {
     console.error("Login failed:", error);
     throw error;
@@ -50,9 +50,17 @@ export const signup_token = async (username, email, password, role, phone) => {
       role,
       phone,
     });
-    console.log(response);
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Signup failed:", error);
+  }
+};
+
+export const logout = async () => {
+  try {
+    const res = await api.post("/logout/");
+    return res;
+  } catch (error) {
+    console.log(error);
   }
 };

@@ -1,10 +1,5 @@
 export const header = [
     {
-        id: 1,
-        url: '/',
-        name: 'Home'
-    },
-    {
         id: 2,
         url: '/about',
         name: 'About'

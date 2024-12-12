@@ -1,41 +1,49 @@
-// UserContext.js
 import React, { createContext, useState, useEffect } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+import Loader from "../components/Loader";
 
-// Create the context
 export const UserContext = createContext();
 
-// Create the provider component
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({ name: "ashish" }); // User state
-  const [loading, setLoading] = useState(true); // Loading state for async operations
+  const navigate = useNavigate();
+  // const [user, setUser] = useState(); // the user details
+  const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
-  /*
+  const checkIfAuthenticated = () => {
+    const username = localStorage.getItem("username");
+    if (!username) {
+      setAuthenticated(false);
+    } else {
+      setAuthenticated(true);
+    }
+    return authenticated;
+  };
+
   useEffect(() => {
-    const fetchUser = async () => {
+    try {
       setLoading(true);
-      const storedUser = JSON.parse(localStorage.getItem('user')); // Example: get user from localStorage
-      setUser(storedUser);
+      const status = checkIfAuthenticated();
+      if (!status) {
+        // navigate("/login");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
       setLoading(false);
-    };
+    }
+  }, [username, Navigate]);
 
-    fetchUser();
-  }, []);
-
-  // Login function
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData)); // Save user to localStorage
-  };
-
-  // Logout function
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user'); // Remove user from localStorage
-  };
-  */
   return (
-    <UserContext.Provider value={{ user, loading }}>
-      {children}
+    <UserContext.Provider
+      value={{
+        username,
+        setLoading,
+        setUsername,
+      }}
+    >
+      {loading ? <Loader /> : children}
     </UserContext.Provider>
   );
 };
