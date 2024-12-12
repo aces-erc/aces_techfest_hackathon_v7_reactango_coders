@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import coverImg from "../assets/login.avif";
 import profileImg from "../assets/landing.avif";
 import { get } from "react-hook-form";
-import { getMyWasteRequests, getUser } from "../api/endPoints";
+import {
+  getCollectionRequest,
+  getMyWasteRequests,
+  getUser,
+  getUserByRole,
+  pullRequests,
+} from "../api/endPoints";
 import { useParams } from "react-router-dom";
-
-// wastes/[username]
 
 const Profile = () => {
   const { username } = useParams();
   const [user, setUser] = useState({});
   const [request, setRequest] = useState([]);
+  const role = getUserByRole();
 
   async function fetchUser() {
     try {
@@ -21,18 +26,48 @@ const Profile = () => {
     }
   }
 
-  useEffect(() => {
-    const fetchRequests = async () => {
-      try {
-        const res = await getMyWasteRequests(username);
-        setRequest(res);
-      } catch (error) {
-        console.log(error);
-      }
+  const fetchRequestsforWC = async () => {
+    try {
+      const response = await getCollectionRequest();
+      console.log(response);
+
+      const accepted = response.filter((res) => res.status === "Accepted");
+      setRequest(accepted);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const convertTo12HourFormat = (isoString) => {
+    const date = new Date(isoString);
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
     };
-    fetchRequests();
+    return date.toLocaleString("en-US", options);
+  };
+
+  const fetchRequests = async () => {
+    try {
+      const res = await getMyWasteRequests();
+      setRequest(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
     fetchUser();
+    if (role === "NU") {
+      fetchRequests();
+    } else {
+      fetchRequestsforWC();
+    }
   }, [username]);
+
+  console.log(request);
 
   return (
     <div className="h-full w-full bg-lime-50 flex flex-col items-center">
@@ -67,6 +102,8 @@ const Profile = () => {
           Previous Records
         </h2>
         {/* Record List */}
+        {/* yesko sato kei dekhaunu parxa */}
+
         <div className="overflow-auto">
           <table className="w-full table-auto text-left border-collapse">
             <thead>
@@ -81,7 +118,9 @@ const Profile = () => {
               {request &&
                 request.map((req, index) => (
                   <tr key={index} className="border-b hover:bg-green-200">
-                    <td className="p-3">{req.collection_date}</td>
+                    <td className="p-3">
+                      {convertTo12HourFormat(req.collection_date)}
+                    </td>
                     <td className="p-3">{req.waste_type_display}</td>
                     <td className="p-3">{req.waste_weight}</td>
                     {/* fix the color for different status of the req */}
@@ -107,7 +146,6 @@ const Profile = () => {
         </div>
       </div>
     </div>
-    // `p-3 font-medium `
   );
 };
 

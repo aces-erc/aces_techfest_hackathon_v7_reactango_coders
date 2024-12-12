@@ -367,15 +367,19 @@ def accept_task(request, id):
         print(request.user)
         print("ya samma aayo")
         waste = Waste.objects.get(id=id)
-        print(waste)
+        
         # Ensure the waste record belongs to the authenticated user
-        if waste.user != request.user:
-            return Response({"error": "You are not authorized to accept this waste."}, 
-                            status=status.HTTP_403_FORBIDDEN)
+        # if waste.user != request.user:
+        #     return Response({"error": "You are not authorized to accept this waste."}, 
+        #                     status=status.HTTP_403_FORBIDDEN)
 
         waste.status = 'Accepted'
         waste.save()
-        serializer = WasteSerializer(waste)
+        if waste.status == 'Accepted':
+            a = True
+        if a:
+        # if waste.status:
+            serializer = WasteSerializer(waste)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     except Waste.DoesNotExist:
@@ -391,9 +395,9 @@ def reject_task(request, id):
         waste = Waste.objects.get(id=id)
 
         # Ensure the waste record belongs to the authenticated user
-        if waste.user != request.user:
-            return Response({"error": "You are not authorized to reject this waste."}, 
-                            status=status.HTTP_403_FORBIDDEN)
+        # if waste.user != request.user:
+        #     return Response({"error": "You are not authorized to reject this waste."}, 
+        #                     status=status.HTTP_403_FORBIDDEN)
 
         waste.status = 'Rejected'
         waste.save()
@@ -408,3 +412,15 @@ def reject_task(request, id):
 @api_view(['GET'])
 def get_helllo(request):
     return Response({"Mesage":"hello"})
+
+
+
+@api_view(['GET'])
+def get_role_from_username(request, pk):
+    try:
+        user = MyUser.objects.get(username=pk)
+        return Response({"role": user.role})
+    except MyUser.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+    except Exception as e:
+        return Response({"error": f"Error in getting role: {str(e)}"}, status=500)

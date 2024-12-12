@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { header } from "../links/header";
 import { CiUser } from "react-icons/ci";
-import { logout } from "../api/endPoints";
+import { getUserByRole, logout } from "../api/endPoints";
 import { toast } from "react-toastify";
 import { UserContext } from "../context/AuthContext";
 
@@ -10,7 +10,7 @@ const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const username = localStorage.getItem("username");
-
+  const role = getUserByRole();
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
@@ -51,6 +51,26 @@ const Header = () => {
               Home
             </Link>
           </li>
+
+          {role === "NU" ? (
+            <li>
+              <Link
+                to={`/services`}
+                className="text-gray-600 hover:text-green-400 font-medium"
+              >
+                Services
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                to={`/dashboard`}
+                className="text-gray-600 hover:text-green-400 font-medium"
+              >
+                Dashboard
+              </Link>
+            </li>
+          )}
           {header &&
             header.map((header, index) => (
               <li key={index}>

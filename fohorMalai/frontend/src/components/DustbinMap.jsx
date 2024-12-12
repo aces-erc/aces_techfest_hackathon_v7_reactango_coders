@@ -31,26 +31,21 @@ console.log("Rendering DustbinMap");
 
 function DustbinMap() {
   return (
-<MapContainer
-  center={[26.6667, 87.2833]}
-  zoom={16}
-  style={{ height: "100vh", width: "100%" }}  // Set height and width to make the map visible
->
-
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        {mockDustbins.map((dustbin) => (
-          <Marker
-            key={dustbin.id}
-            position={dustbin.position}
-            icon={dustbinIcon}
-          >
-            <Popup>{dustbin.name}</Popup>
-          </Marker>
-        ))}
-      </MapContainer>
+    <MapContainer
+      center={[26.6667, 87.2833]}
+      zoom={16}
+      style={{ height: "100vh", width: "100%" }}
+    >
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      />
+      {mockDustbins.map((dustbin) => (
+        <Marker key={dustbin.id} position={dustbin.position} icon={dustbinIcon}>
+          <Popup>{dustbin.name}</Popup>
+        </Marker>
+      ))}
+    </MapContainer>
   );
 }
 

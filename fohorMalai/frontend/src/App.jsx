@@ -13,10 +13,14 @@ import LandingPage from "./pages/LandingPage";
 import ContactUs from "./pages/Contact";
 import About from "./pages/AboutUs";
 import RequestPage from "./pages/RequestPage";
+<<<<<<< HEAD
 import CollectorDashboard from "./components/CollectorDashboard";
 import DustbinMap from "./components/DustbinMap";
 
 
+=======
+import CollectorDashboard from "./pages/CollectorDashboard";
+>>>>>>> 02bd187da8b800e6333e091b943c469109da7b98
 
 function App() {
   return (
@@ -94,17 +98,17 @@ function App() {
             }
           />
           <Route
-            path="/request"
+            path="/services"
             element={
               <ProtectedUser>
                 <RequestPage />
               </ProtectedUser>
             }
           />
+          <Route path="/dashboard" element={<CollectorDashboard  />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-      {/* <CollectorDashboard/> */}
       <ToastContainer />
     </>
   );

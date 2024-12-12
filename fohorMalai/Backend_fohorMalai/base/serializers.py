@@ -111,7 +111,8 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
 
 class WasteSerializer(serializers.ModelSerializer):
-    # Display fields for choice fields
+    user = MyUserSerializer(read_only=True)  # Include nested user details
+    
     waste_type_display = serializers.CharField(
         source='get_waste_type_display', read_only=True)
     location_display = serializers.CharField(
@@ -119,11 +120,7 @@ class WasteSerializer(serializers.ModelSerializer):
     urgency_display = serializers.CharField(
         source='get_urgency_display', read_only=True)
     status_display = serializers.CharField(
-        source='get_status_display', read_only=True)  # Display for waste status
-    
-    # User reference fields
-    username = serializers.CharField(
-        write_only=True, required=False)
+        source='get_status_display', read_only=True)
     
     class Meta:
         model = Waste
@@ -138,48 +135,11 @@ class WasteSerializer(serializers.ModelSerializer):
             'urgency_display',
             'collection_date',
             'description',
-            'username',
-            'status',           # Added status field
-            'status_display',   # Added status display field
+            'user',  # Include nested user details
+            'status',
+            'status_display',
         ]
-        read_only_fields = ['id','collection_date']
-
-    def validate_waste_weight(self, value):
-        if value <= 0:
-            raise serializers.ValidationError("Waste weight must be a positive number.")
-        return value
-
-    def validate(self, data):
-        if data.get('waste_type') == 'NON' and data.get('urgency') == 'LOW':
-            raise serializers.ValidationError({
-                "urgency": "Non-biodegradable waste should be marked as high urgency."
-            })
-        return data
-
-    def create(self, validated_data):
-        username = validated_data.pop('username', None)
-        if username:
-            try:
-                user = MyUser.objects.get(username=username)
-                validated_data['user'] = user
-            except MyUser.DoesNotExist:
-                raise serializers.ValidationError({"username": "User not found."})
-        
-        return Waste.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        # Ensure the waste status is updated when creating or modifying the waste record
-        if 'status' in validated_data:
-            instance.status = validated_data['status']
-        return super().update(instance, validated_data)
-
-
-
-
-
-
-
-
+        read_only_fields = ['id', 'collection_date', 'user']
 from rest_framework import serializers
 from .models import Task, Waste, MyUser
 

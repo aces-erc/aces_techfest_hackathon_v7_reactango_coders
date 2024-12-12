@@ -1,7 +1,7 @@
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import CustomTokenObtainPairView,log_out,register,forgot_password,reset_password,waste_detail,waste_list,user_waste_list,delete_waste,get_user,accept_task,reject_task
+from .views import CustomTokenObtainPairView,log_out,register,forgot_password,reset_password,waste_detail,waste_list,user_waste_list,delete_waste,get_user,accept_task,reject_task,get_role_from_username
 
 urlpatterns = [
     # path('login/',UserLoginView.as_view(),name='Login'),
@@ -26,6 +26,8 @@ urlpatterns = [
     path('tasks/accept/<int:id>/', accept_task, name='accept_task'),
     path('tasks/<int:id>/reject/', reject_task, name='reject_task'),
     
+    #role
+    path('role/<str:pk>/',get_role_from_username,name='Role')
     
   
     

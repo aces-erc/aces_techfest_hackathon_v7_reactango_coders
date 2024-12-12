@@ -61,16 +61,6 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
-
-      {/* Modal */}
-      <Modal show={isModalOpen} onClose={closeModal} title="Find the nearest dustbin">
-        <div
-          className="cursor-pointer text-gray-500"
-          onClick={redirectToDustbinPage}
-        >
-          Click anywhere in this modal to go to the Dustbin page.
-        </div>
-      </Modal>
     </div>
   );
 };
