@@ -10,6 +10,34 @@ const CollectorDashboard = () => {
       phone: "9876543210",
       location: "Kathmandu",
       wasteType: "Degradable",
+    },
+    {
+      id: 2,
+      username: "Shovan Bhattarai",
+      phone: "9876543210",
+      location: "Kathmandu",
+      wasteType: "Degradable",
+    },
+    {
+      id: 1,
+      username: "Shovan Bhattarai",
+      phone: "9876543210",
+      location: "Kathmandu",
+      wasteType: "Degradable",
+    },
+    {
+      id: 1,
+      username: "Shovan Bhattarai",
+      phone: "9876543210",
+      location: "Kathmandu",
+      wasteType: "Degradable",
+    },
+    {
+      id: 1,
+      username: "Shovan Bhattarai",
+      phone: "9876543210",
+      location: "Kathmandu",
+      wasteType: "Degradable",
     }
   ]);
 

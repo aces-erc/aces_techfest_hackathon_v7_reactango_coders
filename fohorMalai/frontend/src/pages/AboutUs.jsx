@@ -7,10 +7,10 @@ const About = () => {
   return (
     <div className="bg-lime-50 min-h-screen">
       {/* Hero Section */}
-      <section className="bg-green-400 mt-14 text-white py-12">
+      <section className="bg-lime-50 mt-14 py-12">
         <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">About Us</h1>
-          <p className="text-lg font-bold md:text-xl">
+          <h1 className="text-4xl md:text-5xl text-green-800 font-extrabold mb-4">About Us</h1>
+          <p className="text-lg t font-bold md:text-xl">
             We are a passionate team dedicated to improving environmeantal
             health and ensuring best future for our upcoming generation.
           </p>
@@ -18,8 +18,8 @@ const About = () => {
       </section>
 
       {/* Our Mission Section */}
-      <section className="py-12">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-12 bg-white">
+        <div className="container bg-whhi mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold text-green-800 mb-6">
             Our Mission
           </h2>
@@ -31,7 +31,7 @@ const About = () => {
       </section>
 
       {/* Our Values Section */}
-      <section className="bg-lime-100 py-12">
+      <section className="bg-white py-12">
         <div className="container mx-auto px-6">
           <h2 className="text-3xl font-semibold text-center text-green-800 mb-8">
             Our Values
@@ -89,7 +89,7 @@ const About = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-green-500 text-white py-8">
+      <section className="bg-green-100 py-8">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-semibold mb-4">
             Join Us in Shaping the Future
